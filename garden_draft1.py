@@ -1,7 +1,39 @@
 import turtle
 from functools import partial
+import random
 
 ##### FUNCTIONS #####
+
+def draw_rectangle(t, width, height):
+    """ Draw a rectangle using turtle t with size width x height
+        Precondition: t’s pen is down
+        Postcondition: t’s position and  orientation are the same as before
+    """
+    for i in range(2):
+        t.forward(width)
+        t.left(90)
+        t.forward(height)
+        t.left(90)
+
+def draw_polygon(t, side_length, num_sides):
+    """ Draw a polygon with num_sides sides, each with length side_lengthusing turtle t
+        Precondition: t’s pen is down; num_sides > 2
+        Postcondition: t’s position and orientation are the same as before
+    """
+    angle_turn = 360 / num_sides
+
+    for i in range(num_sides):
+        t.forward(side_length)
+        t.left(angle_turn)
+
+def draw_snowflake(t, side_length, num_sides):
+    """ Use t to draw a snowflake made of ngon-sided polygons. The snowflake contains 10 copies of a polygon with
+        num_sides and side_length, each drawn at a 36-degree angle from the previous one.
+        Postcondition: t’s position and orientation are the same as before
+    """
+    for i in range(10):
+        draw_polygon(t, side_length, num_sides)
+        t.left(36)
 
 def sort_leaderboard(file_name):
     file_lines = []
@@ -142,26 +174,26 @@ def create_garden(wn):
 
     #create the turtle that will draw, set no animation and make background green
     garden_turtle = turtle.Turtle()
-    turtle.tracer(0, 0)
-    wn.bgcolor("ForestGreen")
+    wn.tracer(0, 0)
+    wn.bgcolor("SaddleBrown")
 
     #draw grid
-    garden_turtle.width(2)
-    garden_turtle.color("darkgreen")
+    garden_turtle.width(20)
+    garden_turtle.color("forestgreen")
     for i in range(100):
         #lets make the garden 2000 by 2000
         garden_turtle.setheading(0)
         garden_turtle.penup()
-        garden_turtle.goto(-1000, 1000-(i*20))
+        garden_turtle.goto(-992, 990-(i*20))
         garden_turtle.pendown()
-        garden_turtle.forward(2000)
+        garden_turtle.forward(1982)
 
-    for i in range(100):
-        garden_turtle.setheading(270)
-        garden_turtle.penup()
-        garden_turtle.goto(1000-(i*20), 1000)
-        garden_turtle.pendown()
-        garden_turtle.forward(2000)
+    # for i in range(100):
+    #     garden_turtle.setheading(270)
+    #     garden_turtle.penup()
+    #     garden_turtle.goto(1000-(i*20), 1000)
+    #     garden_turtle.pendown()
+    #     garden_turtle.forward(2000)
 
     #draw fence
     heading = 0
@@ -181,7 +213,34 @@ def create_garden(wn):
             else:
                 heading = 180
 
-    turtle.update()
+    #draw flowers
+
+    garden_turtle.pensize(3)
+    colors = ("red", "orange", "blue", "yellow", "blue", "purple")
+    x_range = 900
+    y_range = 900
+    for i in range(70):
+
+        #decide random qualities
+        x = random.randint(-x_range, x_range + 1)
+        y = random.randint(-y_range, y_range + 1)
+
+        #draw flower stem
+        garden_turtle.penup()
+        garden_turtle.goto(x, y)
+        garden_turtle.pendown()
+        garden_turtle.color("darkgreen")
+        draw_rectangle(garden_turtle, 3, 60)
+
+        #draw flower petals
+        sidelength = random.randint(20, 30)
+        garden_turtle.color(colors[random.randint(0,5)])
+        garden_turtle.penup()
+        garden_turtle.goto(x, y)
+        garden_turtle.pendown()
+        draw_snowflake(garden_turtle, sidelength, 3)
+
+    wn.update()
 
 def main():
     # setup the window and create user turtle
@@ -211,7 +270,7 @@ def main():
     user_information["color"] = wn.textinput("garden says:", "What color would you like your turtle to be? (red, orange, yellow, green, blue, or purple)? ")
     while user_color_invalid(user_information["color"]):
         user_information["color"] = wn.textinput("garden says:", "Looks like that color wasn't one of the options. What color would you like your turtle to be? (red, orange, yellow, green, blue, or purple)? ")
-    wn.textinput("garden says:", "Looks like you're all set!. You can press enter to start and 'x' once you're done. Let's see how many steps you take!")
+    wn.textinput("garden says:", "Looks like you're all set!. You can press enter to start and 'x' on your keyboard once you're done. Let's see how many steps you take!")
     user.color(user_information["color"])
     wn.update()
 
