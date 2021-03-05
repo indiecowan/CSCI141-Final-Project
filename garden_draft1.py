@@ -50,11 +50,19 @@ def sort_leaderboard(file_name):
                 break
         sorted_lines.insert(final_index, file_line)
     print(sorted_lines)
-    with open(file_name, "w") as info_file:
+    with open(file_name, "r") as info_file:
+        file_line_count = 0
+        for line in info_file:
+            file_line_count+=1
+    with open(file_name, "w") as info_file:    
+        lines_written = 0
         for info_list in sorted_lines:
             for item in info_list:
                 info_file.write(item)
                 info_file.write(" ")
+            lines_written+=1
+            if lines_written < file_line_count:
+                info_file.write("\n")
 
 
 
@@ -267,7 +275,7 @@ def main():
     with open("final_project/CSCI141/player_info.txt") as info_file:
         for line in info_file:
             leaderboard.append(line.strip())
-    leaderboard_text = "~GARDEN~\n\nLEADERBOARD:\n"+str(leaderboard[0])+"\n"+str(leaderboard[1])+"\n"+str(leaderboard[2])+"\n\nPRESS ENTER TO BEGIN"
+    leaderboard_text = "~WELCOME TO THE GARDEN~\n\nLEADERBOARD:\n"+str(leaderboard[0])+"\n"+str(leaderboard[1])+"\n"+str(leaderboard[2])+"\n\nPRESS ENTER TO BEGIN"
     wn.textinput("garden says:", leaderboard_text)
 
     # ask user for their information
