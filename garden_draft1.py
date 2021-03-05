@@ -44,12 +44,18 @@ def sort_leaderboard(file_name):
     for file_line in file_lines:
         final_index = 0
         for sorted_line in sorted_lines:
-            if file_line[2]>sorted_line[2]:
+            if int(file_line[2])<int(sorted_line[2]):
                 final_index += 1
             else:
                 break
         sorted_lines.insert(final_index, file_line)
     print(sorted_lines)
+    with open(file_name, "w") as info_file:
+        for info_list in sorted_lines:
+            for item in info_list:
+                info_file.write(item)
+                info_file.write(" ")
+
 
 
 def user_color_invalid(user_color):
@@ -266,7 +272,7 @@ def main():
 
     # ask user for their information
     user_information = {"name": "", "color": "", "steps": 0}
-    user_information["name"] = wn.textinput("garden says:", "Hello there! Welcome to the garden. What is your name? ")
+    user_information["name"] = wn.textinput("garden says:", "Hello there! Welcome to the garden. What is your name?(one word pls) ")
     user_information["color"] = wn.textinput("garden says:", "What color would you like your turtle to be? (red, orange, yellow, green, blue, or purple)? ")
     while user_color_invalid(user_information["color"]):
         user_information["color"] = wn.textinput("garden says:", "Looks like that color wasn't one of the options. What color would you like your turtle to be? (red, orange, yellow, green, blue, or purple)? ")
