@@ -1,7 +1,10 @@
-sage red 562 
-ROCKET orange 100 
+sage red 135 
+indie purple 110 
+zach blue 100 
+ROCKET orange 81 
 test orange 73 
-person orange 27 
-indie green 16 
-hospital purple 15 
+freddy green 44 
+baby orange 27 
+franklin green 16 
+sweaty purple 15 
 sad blue 5 

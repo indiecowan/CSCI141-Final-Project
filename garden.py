@@ -237,7 +237,7 @@ def create_done(t, wn, user_information):
     """
 
     # write user info to file
-    with open("final_project/CSCI141/player_info.txt", "a") as info_file:
+    with open("player_info.txt", "a") as info_file:
         info_file.write("\n")
         for key in user_information:
             info_file.write(str(user_information[key]))
@@ -248,7 +248,7 @@ def create_done(t, wn, user_information):
     wn.textinput("garden says:", prompt)
 
     # sort the leaderboard and close program
-    sort_leaderboard("final_project/CSCI141/player_info.txt")
+    sort_leaderboard("player_info.txt")
     exit()
 
 
@@ -355,7 +355,7 @@ def main():
     
     # display leaderboard/past players
     leaderboard = []
-    with open("final_project/CSCI141/player_info.txt") as info_file:
+    with open("player_info.txt") as info_file:
         for line in info_file:
             leaderboard.append(line.strip())
     leaderboard_text = "~WELCOME TO THE GARDEN~\n\nLEADERBOARD:\n"+str(leaderboard[0])+"\n"+str(leaderboard[1])+"\n"+str(leaderboard[2])+"\n\nPRESS ENTER TO BEGIN"
