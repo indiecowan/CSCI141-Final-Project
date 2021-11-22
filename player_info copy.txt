@@ -1,6 +1,0 @@
-ROCKET orange 100 
-test orange 73 
-person orange 27 
-indie green 16 
-hospital purple 15 
-sad blue 5 
