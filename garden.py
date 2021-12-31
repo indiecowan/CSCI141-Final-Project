@@ -2,14 +2,6 @@
 # Date: March 5
 # Description: Program takes user name and preferred turtle color and then sets user free to meander around a flower-filled garden as a turtle using the arrow keys. Once user is done, they press 'x' on the keyboard and the number of steps is displayed. Once they press enter to end, their info is written to the leaderboard and is then sorted to be displayed the next time the game is started up.
 
-# BUGS:
-# - my computer does this weird thing where it crashed if i use an older version of python with this program, pls lmk if that happens to you
-# - i think if you don't enter a name it will mess up the sorting algorithm for the leaderboard so i'll have to include a while-loop for that one too, pls treat that as a required input as well :)
-
-# FEEDBACK REQUESTS:
-# - pls lmk if you can't hold down the arrow ley to move, i think you can on macs and can't on windows or something so that's frustrating
-# - is there any ways to make this easier for the user while still filling reqs?
-
 
 
 
